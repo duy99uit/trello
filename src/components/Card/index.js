@@ -1,14 +1,13 @@
 import React from "react";
 import "./style.scss";
 
-function Card() {
+function Card(props) {
+  const { card } = props;
   return (
     <li className="card-item">
-      <img
-        src="https://images.unsplash.com/photo-1646900069517-955d7253efa0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-        alt="trello"
-      />
-      Trello demo content list
+      {card.cover && <img src={card.cover} />}
+
+      {card.title}
     </li>
   );
 }

@@ -3,14 +3,15 @@ import React from "react";
 import "./style.scss";
 
 function Column(props) {
-  const {column} = props
+  const { column } = props;
+  const cards = column.cards;
   return (
     <div className="column">
       <header>{column.title}</header>
       <ul className="task-list">
-        <Card />
-        <Card />
-        <Card />
+        {cards.map((card, idx) => (
+          <Card key={idx} card={card} />
+        ))}
       </ul>
       <footer>Add new content</footer>
     </div>
