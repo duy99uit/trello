@@ -1,10 +1,11 @@
 import Card from "components/Card";
 import React from "react";
 import "./style.scss";
+import { mapOrder } from "utilities/sortArray";
 
 function Column(props) {
   const { column } = props;
-  const cards = column.cards;
+  const cards = mapOrder(column.cards, column.cardOrder, "id");
   return (
     <div className="column">
       <header>{column.title}</header>
