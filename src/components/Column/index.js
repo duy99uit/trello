@@ -1,4 +1,4 @@
-import Task from "components/Task";
+import Card from "components/Card";
 import React from "react";
 import "./style.scss";
 
@@ -7,9 +7,9 @@ function Column() {
     <div className="column">
       <header>Header</header>
       <ul className="task-list">
-        <Task />
-        <Task />
-        <Task />
+        <Card />
+        <Card />
+        <Card />
       </ul>
       <footer>Add new content</footer>
     </div>
