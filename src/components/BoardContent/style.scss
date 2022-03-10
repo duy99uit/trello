@@ -1,8 +1,10 @@
 @import 'config.scss';
  
 .board-columns{
+  height: $board-content-height;
   display: flex;
   overflow-x: auto;
+  overflow-y: hidden;
   margin: 0 $gap $gap;
   &::-webkit-scrollbar{
     -webkit-appearance: none;
@@ -16,5 +18,9 @@
    border-radius: 5px;
   }
 
- 
+  .columns-drop-preview {
+       background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    margin: 5px 45px 5px 5px;
+  } 
 }

@@ -1,12 +1,14 @@
 @import 'config.scss';
-li.card-item {
+.card-item {
   background-color: $main-text-color;
   padding: $gap;
   border-radius: 5px;
   box-shadow: 0 1px 1px rgba(0, 0,0,0.1);
-  &:not(:last-child){
-    margin-bottom: $gap;
-  }
+  cursor: pointer;
+  margin-bottom: $gap;
+  // &:not(:last-child){
+  //   margin-bottom: $gap;
+  // }
   img{
     display: block;
     width: calc(100% + 2*#{$gap});

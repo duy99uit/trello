@@ -26,7 +26,7 @@ const itemArray = [
 const itemOrder = [5, 4, 2, 3, 1];
 
 const orderedArray = mapOrder(itemArray, itemOrder, "id");
-console.log("Ordered array:", orderedArray);
+// console.log("Ordered array:", orderedArray);
 /**
  * Results:
  *

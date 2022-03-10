@@ -1,18 +1,20 @@
 @import 'config.scss';
+$column-height: calc( #{$board-content-height - #{$gap*2}});
 .column{
   flex: 0 0 auto;
   width: 300px;
-  height: calc(100% - #{$gap});
-  &:not(:first-child){
-    margin-left: $gap;
-  }
+  height: $column-height;
+  margin-left: $gap;
+  // &:not(:first-child){
+  //   margin-left: $gap;
+  // }
   > *{
     background-color: #ebecf0;
     color: #333;
     padding: 0 8px;
 
   }
-  header{
+  header.column-drag-handle{
     padding-left: 15px;
     height: $column-header-height;
     line-height: $column-header-height;
@@ -20,6 +22,7 @@
     font-weight: bold;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: pointer;
   }
   footer{
     padding-left: 10px;
@@ -29,10 +32,10 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
-  ul.task-list {
+  .card-list {
     list-style-type: none;
     margin: 0;
-    max-height: calc(100% - #{$column-header-height} - #{$column-header-height});
+    max-height: calc(#{$column-height} - #{$column-header-height} - #{$column-header-height});
     overflow-y: auto;
    &::-webkit-scrollbar{
      -webkit-appearance: none;
@@ -45,6 +48,25 @@
     background-color: darken($main-bg-color,5);
     border-radius: 5px;
    }
-    
+   .card-ghost {
+    transition: transform 0.18s ease;
+    transform: rotateZ(-3deg)
+  }
+  
+  .card-ghost-drop{
+    transition: transform 0.18s ease-in-out;
+    transform: rotateZ(0deg)
+  }
+  .cards-drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    margin: 5px;
+  }
+  
+  // .cards-drop-preview {
+  //   background-color: rgba(150, 150, 200, 0.1);
+  //   border: 1px dashed #abc;
+  //   margin: 5px 45px 5px 5px;
+  // }
   }
 }
