@@ -2,10 +2,11 @@ import Card from "components/Card";
 import React from "react";
 import "./style.scss";
 
-function Column() {
+function Column(props) {
+  const {column} = props
   return (
     <div className="column">
-      <header>Header</header>
+      <header>{column.title}</header>
       <ul className="task-list">
         <Card />
         <Card />
