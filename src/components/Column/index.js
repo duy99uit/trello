@@ -5,16 +5,9 @@ import { mapOrder } from "utilities/sortArray";
 import { Container, Draggable } from "react-smooth-dnd";
 
 function Column(props) {
-  const { column } = props;
+  const { column, onCardDrop } = props;
   const cards = mapOrder(column.cards, column.cardOrder, "id");
-  const onColumnDrop = (dropResult) => {
-    console.log("sadfg", dropResult);
-    // const scene = Object.assign({}, this.state.scene);
-    // scene.children = applyDrag(scene.children, dropResult);
-    // this.setState({
-    //   scene,
-    // });
-  };
+
   return (
     <div className="column">
       <header className="column-drag-handle">{column.title}</header>
@@ -31,7 +24,7 @@ function Column(props) {
           // onDropReady={(p) => console.log("Drop ready: ", p)}
           {...column.props}
           groupName="col"
-          onDrop={onColumnDrop}
+          onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
           getChildPayload={(index) => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
@@ -49,7 +42,11 @@ function Column(props) {
           ))}
         </Container>
       </div>
-      <footer>Add new content</footer>
+      <footer>
+        <div className="footer-actions">
+          <i className="fa fa-plus icon" aria-hidden="true"></i>Add new card
+        </div>
+      </footer>
     </div>
   );
 }

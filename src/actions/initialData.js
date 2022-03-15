@@ -35,54 +35,6 @@ export const initialData = {
               title: "Title card 4",
               cover: null,
             },
-            {
-              id: "card-3",
-              columnId: "column-1",
-              title: "Title card 3",
-              cover: null,
-            },
-            {
-              id: "card-4",
-              columnId: "column-1",
-              title: "Title card 4",
-              cover: null,
-            },
-            {
-              id: "card-3",
-              columnId: "column-1",
-              title: "Title card 3",
-              cover: null,
-            },
-            {
-              id: "card-4",
-              columnId: "column-1",
-              title: "Title card 4",
-              cover: null,
-            },
-            {
-              id: "card-3",
-              columnId: "column-1",
-              title: "Title card 3",
-              cover: null,
-            },
-            {
-              id: "card-4",
-              columnId: "column-1",
-              title: "Title card 4",
-              cover: null,
-            },
-            {
-              id: "card-3",
-              columnId: "column-1",
-              title: "Title card 3",
-              cover: null,
-            },
-            {
-              id: "card-4",
-              columnId: "column-1",
-              title: "Title card 4",
-              cover: null,
-            },
           ],
         },
         {
@@ -93,20 +45,54 @@ export const initialData = {
           cards: [
             {
               id: "card-5",
-              columnId: "column-1",
-              title: "Title card 1",
-              cover: null,
+              columnId: "column-2",
+              title: "Title card 5",
+              cover:
+                "https://images.unsplash.com/photo-1646617747575-89f8eb728264?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
             },
             {
               id: "card-6",
-              columnId: "column-1",
-              title: "Title card 2",
+              columnId: "column-2",
+              title: "Title card 6",
               cover: null,
             },
             {
               id: "card-7",
-              columnId: "column-1",
-              title: "Title card 1",
+              columnId: "column-2",
+              title: "Title card 7",
+              cover: null,
+            },
+          ],
+        },
+        {
+          id: "column-3",
+          boardId: "board-1",
+          title: "To do column 3",
+          cardOrder: ["card-8", "card-9", "card-10", "card-11"],
+          cards: [
+            {
+              id: "card-8",
+              columnId: "column-3",
+              title: "Title card 8",
+              cover:
+                "https://images.unsplash.com/photo-1640622307877-1e40352b9a48?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+            },
+            {
+              id: "card-9",
+              columnId: "column-3",
+              title: "Title card 9",
+              cover: null,
+            },
+            {
+              id: "card-10",
+              columnId: "column-3",
+              title: "Title card 10",
+              cover: null,
+            },
+            {
+              id: "card-11",
+              columnId: "column-3",
+              title: "Title card 11",
               cover: null,
             },
           ],

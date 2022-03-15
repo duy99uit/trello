@@ -22,4 +22,8 @@ $column-header-height: 36px;
   line-height: 1.3em;
   background-color: $main-bg-color;
   color: $main-text-color;
+  .icon{
+    font-size: 14px;
+    margin-right: 3px;
+  }
 }
