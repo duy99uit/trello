@@ -62,7 +62,7 @@ $column-height: calc( #{$board-content-height - #{$gap*2}});
     padding-left: 10px;
     height: $column-header-height;
     line-height: $column-header-height;
-
+    min-height: $gap;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #888;
@@ -107,6 +107,13 @@ $column-height: calc( #{$board-content-height - #{$gap*2}});
     background-color: rgba(150, 150, 200, 0.1);
     border: 1px dashed #abc;
     margin: 5px;
+  }
+  .add-new-card-area{
+    .textarea-enter-new-card{
+      min-height: 54px;
+      max-height: 160px;
+      resize: none;
+    }
   }
   
   // .cards-drop-preview {

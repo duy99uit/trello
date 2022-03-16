@@ -11,7 +11,7 @@ import {
   Row,
   Col,
   Form,
-  Button,
+  Button
 } from "react-bootstrap";
 
 function BoardContent() {
@@ -167,10 +167,7 @@ function BoardContent() {
                 Add Column
               </Button>
 
-              <span
-                className="cancel-new-col"
-                onClick={toggleOpenNewColumnForm}
-              >
+              <span className="cancel-btn" onClick={toggleOpenNewColumnForm}>
                 <i className="fa fa-trash icon" />
               </span>
             </Col>
