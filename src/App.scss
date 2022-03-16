@@ -32,6 +32,17 @@ $column-header-height: 36px;
     margin: 0 15px;
     padding: 0
   }
+  .trello-content-edit-table{
+    background-color: inherit;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    &:focus{
+      background-color: white;
+      border: 1px solid #999;
+    }
+  }
   textarea:focus, 
 textarea.form-control:focus, 
 input.form-control:focus, 
@@ -47,7 +58,7 @@ input[type=number]:focus,
   box-shadow: none;
 }
 .btn:focus, .bnt:active{
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 }

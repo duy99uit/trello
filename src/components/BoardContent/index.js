@@ -94,6 +94,26 @@ function BoardContent() {
     toggleOpenNewColumnForm();
   };
 
+  const onUpdateColumn = (newColumnToUpdate) => {
+    // console.log("newColumn", newColumnToUpdate);
+    const colIdToUpdate = newColumnToUpdate.id;
+    let newColumns = [...columns];
+    const colIndexToUpdate = newColumns.findIndex(
+      (i) => i.id === colIdToUpdate
+    );
+    // console.log("colIndexToUpdate", colIndexToUpdate);
+    if (newColumnToUpdate._destroy) {
+      newColumns.splice(colIndexToUpdate, 1);
+    } else {
+      newColumns.splice(colIndexToUpdate, 1, newColumnToUpdate);
+    }
+    let newBoards = { ...boardData };
+    newBoards.columnOrder = newColumns.map((c) => c.id);
+    newBoards.columns = newColumns;
+    setColumns(newColumns);
+    setBoardData(newBoards);
+  };
+
   if (isEmpty(boardData)) {
     return <div>Not Found Data</div>;
   }
@@ -113,7 +133,11 @@ function BoardContent() {
       >
         {columns.map((column, idx) => (
           <Draggable key={idx}>
-            <Column column={column} onCardDrop={onCardDrop} />
+            <Column
+              column={column}
+              onCardDrop={onCardDrop}
+              onUpdateColumn={onUpdateColumn}
+            />
           </Draggable>
         ))}
       </Container>
