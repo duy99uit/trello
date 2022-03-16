@@ -6,6 +6,13 @@ import "./style.scss";
 import { mapOrder } from "utilities/sortArray";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "utilities/dragDrop";
+import {
+  Container as BTContainer,
+  Row,
+  Col,
+  Form,
+  Button,
+} from "react-bootstrap";
 
 function BoardContent() {
   // eslint-disable-next-line no-undef
@@ -65,9 +72,31 @@ function BoardContent() {
           </Draggable>
         ))}
       </Container>
-      <div className="add-new-column">
-        <i className="fa fa-plus icon" aria-hidden="true"></i> Add new column
-      </div>
+      <BTContainer className="btcontainer-cus">
+        <Row>
+          <Col className="add-new-column">
+            <i className="fa fa-plus icon" aria-hidden="true"></i> Add new
+            column
+          </Col>
+        </Row>
+        <Row>
+          <Col className="enter-new-column">
+            <Form.Control
+              className="input-enter-new-col"
+              size="sm"
+              type="text"
+              placeholder="Enter column title ..."
+            />
+            <Button variant="success" size="sm">
+              Add Column
+            </Button>
+
+            <span className="cancel-new-col">
+              <i className="fa fa-trash icon" />
+            </span>
+          </Col>
+        </Row>
+      </BTContainer>
     </div>
   );
 }

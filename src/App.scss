@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
 
 body{
   margin: 0;
@@ -26,4 +28,26 @@ $column-header-height: 36px;
     font-size: 14px;
     margin-right: 3px;
   }
+  .btcontainer-cus{
+    margin: 0 15px;
+    padding: 0
+  }
+  textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: none;
+}
+.btn:focus, .bnt:active{
+  outline: none;
+  box-shadow: none;
+}
 }

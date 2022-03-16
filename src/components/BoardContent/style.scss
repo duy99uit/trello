@@ -5,6 +5,10 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+  &::after{
+    content: '';
+    flex: 0 0 $gap;
+  }
   margin: 0 $gap $gap;
   &::-webkit-scrollbar{
     -webkit-appearance: none;
@@ -25,9 +29,9 @@
   }
   .add-new-column{
     width: 250px;
-    height: 32px;
+    max-width: 250px;
     line-height: 32px;
-    padding: 4px 0 4px 15px;
+    padding: 4px 10px;
     cursor: pointer;
     color: white;
     margin-left: $gap;
@@ -38,4 +42,28 @@
       background-color: hsla(0, 0%, 100%, 0.34) ;
     }
   }
+  .enter-new-column{
+    width: 250px;
+    max-width: 250px;
+  
+    background-color: $main-text-color;
+    line-height: 32px;
+    padding: 4px 0 4px 15px;
+    border-radius: 5px;
+    margin-left: $gap;
+    margin-top: -1px;
+    .input-enter-new-col{
+      margin: 5px 0;
+    }
+    .cancel-new-col{
+      margin-left: 10px;
+      cursor: pointer;
+      color: #999;
+      &:hover{
+        color: darken($color: (#000000), $amount: 10);
+      }
+    }
+  }
+  
+   
 }
