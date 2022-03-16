@@ -120,7 +120,9 @@ function Column(props) {
             />
 
             <Dropdown.Menu>
-              <Dropdown.Item>Add card</Dropdown.Item>
+              <Dropdown.Item onClick={toggleOpenNewCardForm}>
+                Add card
+              </Dropdown.Item>
               <Dropdown.Item onClick={toggleShowModal}>
                 Remove column
               </Dropdown.Item>
@@ -170,7 +172,7 @@ function Column(props) {
       <footer>
         {openNewCardForm && (
           <div className="add-new-card-actions">
-            <Button variant="success" size="sm">
+            <Button variant="success" size="sm" onClick={addNewCard}>
               Add Card
             </Button>
 
