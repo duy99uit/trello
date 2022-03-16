@@ -34,7 +34,7 @@
     "object-curly-spacing": [1, "always"],
 		"indent": ["warn", 2],
     "linebreak-style": 0,
-    "semi": [1, "alway"],
+    "semi": [1, "always"],
 		"quotes": ["error", "double"],
     "no-unexpected-multiline": "warn",
     "react/prop-types": 0,
