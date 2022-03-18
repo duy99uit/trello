@@ -1,18 +1,19 @@
-import Column from "components/Column";
+import { fetchBoardDertails } from "actions/api";
 import { initialData } from "actions/initialData";
-import { useEffect, useState, useRef, useCallback } from "react";
+import Column from "components/Column";
 import { isEmpty } from "lodash";
-import "./style.scss";
-import { mapOrder } from "utilities/sortArray";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Button,
+  Col,
+  Container as BTContainer,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "utilities/dragDrop";
-import {
-  Container as BTContainer,
-  Row,
-  Col,
-  Form,
-  Button
-} from "react-bootstrap";
+import { mapOrder } from "utilities/sortArray";
+import "./style.scss";
 
 function BoardContent() {
   const [boardData, setBoardData] = useState({});
@@ -20,15 +21,18 @@ function BoardContent() {
   const [openNewColmnForm, setOpenNewColmnForm] = useState(false);
   const [newColumnValue, setNewColumnValue] = useState("");
   const newColumnInputRef = useRef(null);
+  const boardId = "6232eecf01fbd9803b2a5833";
 
   useEffect(() => {
     setBoardData(initialData);
     setBoardData(initialData.boards);
-    const dataFilter = initialData.boards.find((item) => item.id === "board-1");
-    if (dataFilter) {
-      setBoardData(dataFilter);
-      setColumns(mapOrder(dataFilter.columns, dataFilter.columnOrder, "id"));
-    }
+
+    fetchBoardDertails(boardId).then((board) => {
+      if (board) {
+        setBoardData(board);
+        setColumns(mapOrder(board.columns, board.columnOrder, "_id"));
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -42,7 +46,7 @@ function BoardContent() {
     let newCol = [...columns];
     newCol = applyDrag(newCol, dropResult);
     let newBoards = { ...boardData };
-    newBoards.columnOrder = newCol.map((c) => c.id);
+    newBoards.columnOrder = newCol.map((c) => c._id);
     newBoards.columns = newCol;
 
     setColumns(newCol);
@@ -52,9 +56,9 @@ function BoardContent() {
   const onCardDrop = (columId, dropResult) => {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
       let newCol = [...columns];
-      let currentCol = newCol.find((c) => c.id === columId);
+      let currentCol = newCol.find((c) => c._id === columId);
       currentCol.cards = applyDrag(currentCol.cards, dropResult);
-      currentCol.cardOrder = currentCol.cards.map((item) => item.id);
+      currentCol.cardOrder = currentCol.cards.map((item) => item._id);
       setColumns(newCol);
     }
   };
@@ -75,7 +79,7 @@ function BoardContent() {
     }
     const newColumnToAdd = {
       id: Math.random().toString(36).substr(2, 5),
-      boardId: boardData.id,
+      boardId: boardData._id,
       title: newColumnValue.trim(),
       cardOrder: [],
       cards: [],
@@ -85,7 +89,7 @@ function BoardContent() {
     newColumns.push(newColumnToAdd);
     // boards
     let newBoards = { ...boardData };
-    newBoards.columnOrder = newColumns.map((c) => c.id);
+    newBoards.columnOrder = newColumns.map((c) => c._id);
     newBoards.columns = newColumns;
     setColumns(newColumns);
     setBoardData(newBoards);
@@ -96,10 +100,10 @@ function BoardContent() {
 
   const onUpdateColumn = (newColumnToUpdate) => {
     // console.log("newColumn", newColumnToUpdate);
-    const colIdToUpdate = newColumnToUpdate.id;
+    const colIdToUpdate = newColumnToUpdate._id;
     let newColumns = [...columns];
     const colIndexToUpdate = newColumns.findIndex(
-      (i) => i.id === colIdToUpdate
+      (i) => i._id === colIdToUpdate
     );
     // console.log("colIndexToUpdate", colIndexToUpdate);
     if (newColumnToUpdate._destroy) {
@@ -108,7 +112,7 @@ function BoardContent() {
       newColumns.splice(colIndexToUpdate, 1, newColumnToUpdate);
     }
     let newBoards = { ...boardData };
-    newBoards.columnOrder = newColumns.map((c) => c.id);
+    newBoards.columnOrder = newColumns.map((c) => c._id);
     newBoards.columns = newColumns;
     setColumns(newColumns);
     setBoardData(newBoards);
@@ -117,6 +121,7 @@ function BoardContent() {
   if (isEmpty(boardData)) {
     return <div>Not Found Data</div>;
   }
+  console.log("isEmpty(boardData)", boardData);
 
   return (
     <div className="board-columns">

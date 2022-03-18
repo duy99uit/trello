@@ -14,7 +14,7 @@ import { cloneDeep } from "lodash";
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumn } = props;
-  const cards = mapOrder(column.cards, column.cardOrder, "id");
+  const cards = mapOrder(column.cards, column.cardOrder, "_id");
   const [showModalConfirm, setShowModalConfirm] = useState(false);
   const [columnTitle, setColumnTitle] = useState("");
   const [openNewCardForm, setOpenNewCardForm] = useState(false);
@@ -75,7 +75,7 @@ function Column(props) {
     const newCardToAdd = {
       id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
-      columnId: column.id,
+      columnId: column._id,
       title: newCardValue.trim(),
       cover: null,
     };
@@ -83,7 +83,7 @@ function Column(props) {
     let newColumn = cloneDeep(column);
 
     newColumn.cards.push(newCardToAdd);
-    newColumn.cardOrder.push(newCardToAdd.id);
+    newColumn.cardOrder.push(newCardToAdd._id);
 
     onUpdateColumn(newColumn);
 
@@ -135,7 +135,7 @@ function Column(props) {
         <Container
           {...column.props}
           groupName="col"
-          onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
+          onDrop={(dropResult) => onCardDrop(column._id, dropResult)}
           getChildPayload={(index) => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
