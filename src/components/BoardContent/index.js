@@ -1,4 +1,4 @@
-import { fetchBoardDertails } from "actions/api";
+import { createNewColumn, fetchBoardDertails } from "actions/api";
 import { initialData } from "actions/initialData";
 import Column from "components/Column";
 import { isEmpty } from "lodash";
@@ -8,7 +8,7 @@ import {
   Col,
   Container as BTContainer,
   Form,
-  Row,
+  Row
 } from "react-bootstrap";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "utilities/dragDrop";
@@ -78,24 +78,26 @@ function BoardContent() {
       return;
     }
     const newColumnToAdd = {
-      id: Math.random().toString(36).substr(2, 5),
+      // id: Math.random().toString(36).substr(2, 5),
       boardId: boardData._id,
       title: newColumnValue.trim(),
-      cardOrder: [],
-      cards: [],
+      // cardOrder: [],
+      // cards: [],
     };
-    //clone
-    let newColumns = [...columns];
-    newColumns.push(newColumnToAdd);
-    // boards
-    let newBoards = { ...boardData };
-    newBoards.columnOrder = newColumns.map((c) => c._id);
-    newBoards.columns = newColumns;
-    setColumns(newColumns);
-    setBoardData(newBoards);
-    // delete
-    setNewColumnValue("");
-    toggleOpenNewColumnForm();
+    createNewColumn(newColumnToAdd).then((newColumn) => {
+      //clone
+      let newColumns = [...columns];
+      newColumns.push(newColumn);
+      // boards
+      let newBoards = { ...boardData };
+      newBoards.columnOrder = newColumns.map((c) => c._id);
+      newBoards.columns = newColumns;
+      setColumns(newColumns);
+      setBoardData(newBoards);
+      // delete
+      setNewColumnValue("");
+      toggleOpenNewColumnForm();
+    });
   };
 
   const onUpdateColumn = (newColumnToUpdate) => {

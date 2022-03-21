@@ -11,6 +11,11 @@ import {
   saveContentAfterEnterPressed,
 } from "utilities/contentEditor";
 import { cloneDeep } from "lodash";
+import {
+  updateColumn as updateColumnAPI,
+  createNewCard,
+  updateColumn,
+} from "actions/api";
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumn } = props;
@@ -46,7 +51,10 @@ function Column(props) {
         ...column,
         _destroy: true,
       };
-      onUpdateColumn(newColumn);
+
+      updateColumnAPI(newColumn._id, newColumn).then((updatedColumn) => {
+        onUpdateColumn(updatedColumn);
+      });
     }
     toggleShowModal();
   };
@@ -63,7 +71,12 @@ function Column(props) {
       ...column,
       title: columnTitle,
     };
-    onUpdateColumn(newColumn);
+    if (columnTitle !== column.title) {
+      updateColumnAPI(newColumn._id, newColumn).then((updatedColumn) => {
+        updatedColumn.cards = newColumn.cards;
+        onUpdateColumn(newColumn);
+      });
+    }
   };
 
   const addNewCard = () => {
@@ -73,22 +86,22 @@ function Column(props) {
       return;
     }
     const newCardToAdd = {
-      id: Math.random().toString(36).substr(2, 5),
       boardId: column.boardId,
       columnId: column._id,
       title: newCardValue.trim(),
-      cover: null,
     };
+    //call API
+    createNewCard(newCardToAdd).then((card) => {
+      let newColumn = cloneDeep(column);
 
-    let newColumn = cloneDeep(column);
+      newColumn.cards.push(card);
+      newColumn.cardOrder.push(newCardToAdd._id);
 
-    newColumn.cards.push(newCardToAdd);
-    newColumn.cardOrder.push(newCardToAdd._id);
+      onUpdateColumn(newColumn);
 
-    onUpdateColumn(newColumn);
-
-    setNewCardValue("");
-    toggleOpenNewCardForm();
+      setNewCardValue("");
+      toggleOpenNewCardForm();
+    });
   };
 
   return (
