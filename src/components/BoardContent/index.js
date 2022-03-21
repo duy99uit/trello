@@ -1,14 +1,20 @@
-import { createNewColumn, fetchBoardDertails } from "actions/api";
+import {
+  createNewColumn,
+  fetchBoardDertails,
+  updateBoard,
+  updateColumn,
+  updateCard,
+} from "actions/api";
 import { initialData } from "actions/initialData";
 import Column from "components/Column";
-import { isEmpty } from "lodash";
+import { isEmpty, cloneDeep } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Button,
   Col,
   Container as BTContainer,
   Form,
-  Row
+  Row,
 } from "react-bootstrap";
 import { Container, Draggable } from "react-smooth-dnd";
 import { applyDrag } from "utilities/dragDrop";
@@ -43,23 +49,51 @@ function BoardContent() {
   }, [openNewColmnForm]);
 
   const onColumnDrop = (dropResult) => {
-    let newCol = [...columns];
+    let newCol = cloneDeep(columns);
     newCol = applyDrag(newCol, dropResult);
     let newBoards = { ...boardData };
     newBoards.columnOrder = newCol.map((c) => c._id);
     newBoards.columns = newCol;
 
+    //prevent lag when drag and drop
     setColumns(newCol);
     setBoardData(newBoards);
+    // call api
+    updateBoard(newBoards._id, { columnOrder: newBoards.columnOrder }).catch(
+      (err) => {
+        console.log("err", err);
+        setColumns(columns);
+        setBoardData(boardData);
+      }
+    );
   };
 
   const onCardDrop = (columId, dropResult) => {
     if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
-      let newCol = [...columns];
+      let newCol = cloneDeep(columns);
       let currentCol = newCol.find((c) => c._id === columId);
       currentCol.cards = applyDrag(currentCol.cards, dropResult);
       currentCol.cardOrder = currentCol.cards.map((item) => item._id);
       setColumns(newCol);
+      if (dropResult.removedIndex !== null && dropResult.addedIndex !== null) {
+        // move 1
+
+        updateColumn(currentCol._id, currentCol).catch(() => {
+          setColumns(columns);
+        });
+      } else {
+        //move 2
+        updateColumn(currentCol._id, currentCol).catch(() => {
+          setColumns(columns);
+         
+        });
+        if (dropResult.addedIndex !== null) {
+          let currentCard = cloneDeep(dropResult.payload);
+          currentCard.columnId = currentCol._id;
+          updateCard(currentCard._id, currentCard);
+       
+        }
+      }
     }
   };
 
