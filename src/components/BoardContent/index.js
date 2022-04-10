@@ -61,7 +61,7 @@ function BoardContent() {
     // call api
     updateBoard(newBoards._id, { columnOrder: newBoards.columnOrder }).catch(
       (err) => {
-        console.log("err", err);
+        //console.log("err", err);
         setColumns(columns);
         setBoardData(boardData);
       }
@@ -85,13 +85,11 @@ function BoardContent() {
         //move 2
         updateColumn(currentCol._id, currentCol).catch(() => {
           setColumns(columns);
-         
         });
         if (dropResult.addedIndex !== null) {
           let currentCard = cloneDeep(dropResult.payload);
           currentCard.columnId = currentCol._id;
           updateCard(currentCard._id, currentCard);
-       
         }
       }
     }
@@ -157,7 +155,7 @@ function BoardContent() {
   if (isEmpty(boardData)) {
     return <div>Not Found Data</div>;
   }
-  console.log("isEmpty(boardData)", boardData);
+  //console.log("isEmpty(boardData)", boardData);
 
   return (
     <div className="board-columns">
