@@ -1,10 +1,55 @@
 @import 'config.scss';
  
-.navbar-boards{
-  background-color: $main-bg-color;
-  font-size: 1.1rem;
-  padding-left: $gap;
+// .navbar-boards{
+//   background-color: $main-bg-color;
+//   font-size: 1.1rem;
+//   padding-left: $gap;
+//   display: flex;
+//   align-items: center;
+//   height: $navbar-board-height;
+// }
+
+.board-info-bar {
+  height: $navbar-board-height;
   display: flex;
   align-items: center;
-  height: $navbar-board-height;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  padding: $gap;
+  color: #f6f6f6;
+  background-color: $main-bg-color;
+}
+
+.board-controls {
+  display: flex;
+}
+
+.board-controls .btn {
+  margin-right: 1rem;
+}
+
+.board-controls .btn:last-of-type {
+  margin-right: 0;
+}
+
+.board-info-bar .btn {
+  font-size: 1rem;
+  font-weight: 400;
+  transition: background-color 150ms;
+  padding: 0 0.6rem;
+  border-radius: 0.3rem;
+  
+}
+
+.private-btn-icon,
+.menu-btn-icon {
+  padding-right: 0.6rem;
+  white-space: nowrap;
+}
+
+.board-title h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 0.5rem;
 }

@@ -5,6 +5,7 @@
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
+  padding-top: 0.5rem;
   &::after{
     content: '';
     flex: 0 0 $gap;
@@ -18,7 +19,7 @@
   
  }
  &::-webkit-scrollbar-thumb{
-   background-color: darken(#333,1);
+   background-color: darken(#222,1);
    border-radius: 5px;
   }
 

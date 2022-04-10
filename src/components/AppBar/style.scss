@@ -1,9 +1,124 @@
 @import 'config.scss';
-.navbar-app{
-    background-color: $appbar-bg-color;
-    font-size: 1.5rem;
-    padding-left: $gap;
-    display: flex;
-    align-items: center;
-    height: $navbar-app-height;
-  }
+// .navbar-app{
+//     background-color: $appbar-bg-color;
+//     font-size: 1.5rem;
+//     padding-left: $gap;
+//     display: flex;
+//     align-items: center;
+//     height: $navbar-app-height;
+//   }
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.masthead {
+  height: $navbar-app-height;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  background-color: $appbar-bg-color;
+  
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+.masthead .btn {
+  background-color: #4c94be;
+  border-radius: 0.3rem;
+  transition: background-color 150ms;
+}
+
+.masthead .btn:hover {
+  background-color: #3385b5;
+}
+
+.boards-menu {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.boards-btn {
+  flex-basis: 10rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 0.75rem;
+  padding: 0.2rem 0.75rem;
+}
+
+.boards-btn-icon {
+  font-size: 1rem;
+  padding-right: 1.2rem;
+}
+
+.board-search {
+  flex-basis: 18rem;
+  position: relative;
+}
+
+.board-search-input {
+  height: 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #4c94be;
+  width: 100%;
+  padding: 0 3rem 0 1rem;
+  color: #fff;
+}
+
+.board-search-input:hover {
+  background-color: #66a4c8;
+}
+
+.search-icon {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%) rotate(90deg);
+  color: #fff;
+}
+
+.logo {
+  flex: 1;
+  font-family: "Courgette", cursive;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #93c5fd;
+  margin: 0 2rem;
+  transition: color 150ms;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  padding-top: 0.25rem;
+}
+
+.logo:hover {
+  color: #3b82f6;
+}
+
+.logo-icon {
+  padding-right: 0.4rem;
+}
+
+.user-settings {
+  display: flex;
+  height: 2rem;
+  color: #fff;
+}
+
+.user-settings-btn {
+  font-size: 1.25rem;
+  width: 2rem;
+  margin-right: 0.8rem;
+}
+
+.user-settings-btn:last-of-type {
+  margin-right: 0;
+}
